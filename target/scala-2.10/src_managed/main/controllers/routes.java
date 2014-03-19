@@ -1,6 +1,6 @@
 // @SOURCE:/Users/zouliping/projects/WeiBoShengRiHuiServer/conf/routes
-// @HASH:1b9e483b8c5f0047d83c7a206a9d0e9f23edd0e6
-// @DATE:Wed Mar 19 15:54:42 CST 2014
+// @HASH:ceb431f88ff0ece7e03e43a47096a8bdefc3dbaa
+// @DATE:Wed Mar 19 20:19:10 CST 2014
 
 package controllers;
 

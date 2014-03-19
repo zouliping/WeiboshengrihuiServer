@@ -1,6 +1,6 @@
 // @SOURCE:/Users/zouliping/projects/WeiBoShengRiHuiServer/conf/routes
-// @HASH:1b9e483b8c5f0047d83c7a206a9d0e9f23edd0e6
-// @DATE:Wed Mar 19 15:54:42 CST 2014
+// @HASH:ceb431f88ff0ece7e03e43a47096a8bdefc3dbaa
+// @DATE:Wed Mar 19 20:19:10 CST 2014
 
 import Routes.{prefix => _prefix, defaultPrefix => _defaultPrefix}
 import play.core._
@@ -13,6 +13,7 @@ import play.libs.F
 import Router.queryString
 
 
+// @LINE:14
 // @LINE:13
 // @LINE:10
 // @LINE:7
@@ -32,9 +33,16 @@ def at(file:String): Call = {
 }
                           
 
+// @LINE:14
 // @LINE:13
 class ReverseMyUser {
     
+
+// @LINE:14
+def update(): Call = {
+   Call("PUT", _prefix + { _defaultPrefix } + "user/update")
+}
+                                                
 
 // @LINE:13
 def get(name:String): Call = {
@@ -68,6 +76,7 @@ def login(): Call = {
                   
 
 
+// @LINE:14
 // @LINE:13
 // @LINE:10
 // @LINE:7
@@ -92,9 +101,21 @@ def at : JavascriptReverseRoute = JavascriptReverseRoute(
 }
               
 
+// @LINE:14
 // @LINE:13
 class ReverseMyUser {
     
+
+// @LINE:14
+def update : JavascriptReverseRoute = JavascriptReverseRoute(
+   "controllers.MyUser.update",
+   """
+      function() {
+      return _wA({method:"PUT", url:"""" + _prefix + { _defaultPrefix } + """" + "user/update"})
+      }
+   """
+)
+                        
 
 // @LINE:13
 def get : JavascriptReverseRoute = JavascriptReverseRoute(
@@ -143,6 +164,7 @@ def login : JavascriptReverseRoute = JavascriptReverseRoute(
         
 
 
+// @LINE:14
 // @LINE:13
 // @LINE:10
 // @LINE:7
@@ -163,13 +185,20 @@ def at(path:String, file:String): play.api.mvc.HandlerRef[_] = new play.api.mvc.
 }
                           
 
+// @LINE:14
 // @LINE:13
 class ReverseMyUser {
     
 
+// @LINE:14
+def update(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
+   controllers.MyUser.update(), HandlerDef(this, "controllers.MyUser", "update", Seq(), "PUT", """""", _prefix + """user/update""")
+)
+                      
+
 // @LINE:13
 def get(name:String): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
-   controllers.MyUser.get(name), HandlerDef(this, "controllers.MyUser", "get", Seq(classOf[String]), "GET", """user""", _prefix + """user/get""")
+   controllers.MyUser.get(name), HandlerDef(this, "controllers.MyUser", "get", Seq(classOf[String]), "GET", """ User""", _prefix + """user/get""")
 )
                       
     

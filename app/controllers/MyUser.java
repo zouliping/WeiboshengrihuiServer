@@ -1,11 +1,14 @@
 package controllers;
 
+import java.util.Iterator;
+
 import models.Users;
 import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
 import utils.JsonUtil;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 public class MyUser extends Controller {
@@ -25,5 +28,34 @@ public class MyUser extends Controller {
 		ObjectNode result = Json.newObject();
 		result.put(name, on);
 		return ok(result);
+	}
+
+	public static Result update() {
+		JsonNode json = request().body().asJson();
+		System.out.println(json);
+
+		Users users = Users.find.byId(json.get("individualname").textValue());
+
+		if (users == null) {
+			return badRequest(JsonUtil.getFalseJson());
+		}
+
+		for (Iterator<String> it = json.fieldNames(); it.hasNext();) {
+			String pro = it.next();
+
+			if ("classname".equals(pro) || "uid".equals(pro)
+					|| "individualname".equals(pro)) {
+			} else if ("current_location".equals(pro)) {
+				users.location = json.get(pro).textValue();
+			} else if ("gender".equals(pro)) {
+				users.gender = json.get(pro).booleanValue();
+			} else if ("birthday".equals(pro)) {
+				users.birthday = json.get(pro).textValue();
+			} else if ("interesting".equals(pro)) {
+				users.interesting = json.get(pro).textValue();
+			}
+		}
+		users.save();
+		return ok(JsonUtil.getTrueJson());
 	}
 }

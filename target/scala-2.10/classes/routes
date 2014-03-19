@@ -9,5 +9,6 @@ PUT 	/user/login					controllers.Application.login()
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
 
-#user
+# User
 GET		/user/get					controllers.MyUser.get(name)
+PUT		/user/update				controllers.MyUser.update()

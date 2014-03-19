@@ -1,6 +1,6 @@
 // @SOURCE:/Users/zouliping/projects/WeiBoShengRiHuiServer/conf/routes
-// @HASH:1b9e483b8c5f0047d83c7a206a9d0e9f23edd0e6
-// @DATE:Wed Mar 19 15:54:42 CST 2014
+// @HASH:ceb431f88ff0ece7e03e43a47096a8bdefc3dbaa
+// @DATE:Wed Mar 19 20:19:10 CST 2014
 
 
 import play.core._
@@ -43,7 +43,11 @@ private[this] lazy val controllers_Assets_at2 = Route("GET", PathPattern(List(St
 // @LINE:13
 private[this] lazy val controllers_MyUser_get3 = Route("GET", PathPattern(List(StaticPart(Routes.prefix),StaticPart(Routes.defaultPrefix),StaticPart("user/get"))))
         
-def documentation = List(("""GET""", prefix,"""controllers.Application.index()"""),("""PUT""", prefix + (if(prefix.endsWith("/")) "" else "/") + """user/login""","""controllers.Application.login()"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """assets/$file<.+>""","""controllers.Assets.at(path:String = "/public", file:String)"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """user/get""","""controllers.MyUser.get(name:String)""")).foldLeft(List.empty[(String,String,String)]) { (s,e) => e.asInstanceOf[Any] match {
+
+// @LINE:14
+private[this] lazy val controllers_MyUser_update4 = Route("PUT", PathPattern(List(StaticPart(Routes.prefix),StaticPart(Routes.defaultPrefix),StaticPart("user/update"))))
+        
+def documentation = List(("""GET""", prefix,"""controllers.Application.index()"""),("""PUT""", prefix + (if(prefix.endsWith("/")) "" else "/") + """user/login""","""controllers.Application.login()"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """assets/$file<.+>""","""controllers.Assets.at(path:String = "/public", file:String)"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """user/get""","""controllers.MyUser.get(name:String)"""),("""PUT""", prefix + (if(prefix.endsWith("/")) "" else "/") + """user/update""","""controllers.MyUser.update()""")).foldLeft(List.empty[(String,String,String)]) { (s,e) => e.asInstanceOf[Any] match {
   case r @ (_,_,_) => s :+ r.asInstanceOf[(String,String,String)]
   case l => s ++ l.asInstanceOf[List[(String,String,String)]] 
 }}
@@ -78,7 +82,15 @@ case controllers_Assets_at2(params) => {
 // @LINE:13
 case controllers_MyUser_get3(params) => {
    call(params.fromQuery[String]("name", None)) { (name) =>
-        invokeHandler(controllers.MyUser.get(name), HandlerDef(this, "controllers.MyUser", "get", Seq(classOf[String]),"GET", """user""", Routes.prefix + """user/get"""))
+        invokeHandler(controllers.MyUser.get(name), HandlerDef(this, "controllers.MyUser", "get", Seq(classOf[String]),"GET", """ User""", Routes.prefix + """user/get"""))
+   }
+}
+        
+
+// @LINE:14
+case controllers_MyUser_update4(params) => {
+   call { 
+        invokeHandler(controllers.MyUser.update(), HandlerDef(this, "controllers.MyUser", "update", Nil,"PUT", """""", Routes.prefix + """user/update"""))
    }
 }
         

@@ -11,3 +11,4 @@ GET     /assets/*file               controllers.Assets.at(path="/public", file)
 
 # User
 GET		/user/get					controllers.MyUser.get(name)
+PUT		/user/update				controllers.MyUser.update()
