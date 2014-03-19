@@ -1,0 +1,6 @@
+[0m[[0mdebug[0m] [0mCopy resource mappings: [0m
+[0m[[0mdebug[0m] [0m	(/Users/zouliping/projects/WeiBoShengRiHuiServer/conf/application.conf,/Users/zouliping/projects/WeiBoShengRiHuiServer/target/scala-2.10/classes/application.conf)[0m
+[0m[[0mdebug[0m] [0m	(/Users/zouliping/projects/WeiBoShengRiHuiServer/conf/evolutions,/Users/zouliping/projects/WeiBoShengRiHuiServer/target/scala-2.10/classes/evolutions)[0m
+[0m[[0mdebug[0m] [0m	(/Users/zouliping/projects/WeiBoShengRiHuiServer/conf/routes,/Users/zouliping/projects/WeiBoShengRiHuiServer/target/scala-2.10/classes/routes)[0m
+[0m[[0mdebug[0m] [0m	(/Users/zouliping/projects/WeiBoShengRiHuiServer/conf/evolutions/default,/Users/zouliping/projects/WeiBoShengRiHuiServer/target/scala-2.10/classes/evolutions/default)[0m
+[0m[[0mdebug[0m] [0m	(/Users/zouliping/projects/WeiBoShengRiHuiServer/conf/evolutions/default/1.sql,/Users/zouliping/projects/WeiBoShengRiHuiServer/target/scala-2.10/classes/evolutions/default/1.sql)[0m
