@@ -1,9 +1,0 @@
-2014-03-19 20:18:47,929 - [INFO] - from play in pool-4-thread-5 
-Listening for HTTP on /0:0:0:0:0:0:0:0%0:9000
-
-2014-03-19 20:19:26,204 - [INFO] - from play in play-internal-execution-context-1 
-database [default] connected at jdbc:postgresql://localhost:5432/weiboshengrihui
-
-2014-03-19 20:19:27,207 - [INFO] - from play in play-internal-execution-context-1 
-Application started (Dev)
-

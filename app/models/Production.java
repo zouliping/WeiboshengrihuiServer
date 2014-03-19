@@ -11,6 +11,7 @@ public class Production extends Model {
 	private static final long serialVersionUID = 5955099679888044770L;
 	@Id
 	public String pid;
+	public String uid;
 	public String title;
 	public String description;
 	public String type;

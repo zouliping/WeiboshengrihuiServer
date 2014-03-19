@@ -1,7 +1,9 @@
 package controllers;
 
 import java.util.Iterator;
+import java.util.List;
 
+import models.Production;
 import models.Users;
 import play.libs.Json;
 import play.mvc.Controller;
@@ -57,5 +59,17 @@ public class MyUser extends Controller {
 		}
 		users.save();
 		return ok(JsonUtil.getTrueJson());
+	}
+
+	public static Result getProduction(String type, String uid) {
+		if ("Goods".equals(type)) {
+			List<Production> productions = Production.find.where()
+					.ilike("uid", uid).findList();
+			System.out.println(productions.size() + "---"
+					+ productions.get(0).title + productions.get(1).title);
+		} else if ("WishItem".equals(type)) {
+
+		}
+		return ok();
 	}
 }
