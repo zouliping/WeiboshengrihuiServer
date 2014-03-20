@@ -121,4 +121,22 @@ public class MyUser extends Controller {
 		}
 		return ok(result);
 	}
+
+	public static Result sendPresent() {
+		JsonNode jn = request().body().asJson();
+		System.out.println(jn);
+		String from = jn.get("from").textValue();
+		String to = jn.get("to").textValue();
+		String pid = jn.get("pid").textValue();
+
+		Production production = Production.find.byId(pid);
+		if (production.uid.equals(from)) {
+			production.uid = to;
+			production.save();
+		} else {
+			return badRequest(JsonUtil.getFalseJson());
+		}
+
+		return ok(JsonUtil.getTrueJson());
+	}
 }
