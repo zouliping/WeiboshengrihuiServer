@@ -13,6 +13,11 @@ public class Application extends Controller {
 		return ok("hello,weiboshengrihui");
 	}
 
+	/**
+	 * login
+	 * 
+	 * @return
+	 */
 	public static Result login() {
 		JsonNode json = request().body().asJson();
 		System.out.println(json.toString());

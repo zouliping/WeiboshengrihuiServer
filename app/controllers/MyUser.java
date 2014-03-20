@@ -17,6 +17,12 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 
 public class MyUser extends Controller {
 
+	/**
+	 * get user info
+	 * 
+	 * @param name
+	 * @return
+	 */
 	public static Result get(String name) {
 		Users user = Users.find.byId(name);
 		if (user == null) {
@@ -34,6 +40,11 @@ public class MyUser extends Controller {
 		return ok(result);
 	}
 
+	/**
+	 * update user info
+	 * 
+	 * @return
+	 */
 	public static Result update() {
 		JsonNode json = request().body().asJson();
 		System.out.println(json);
@@ -63,6 +74,13 @@ public class MyUser extends Controller {
 		return ok(JsonUtil.getTrueJson());
 	}
 
+	/**
+	 * get goods & wishitem
+	 * 
+	 * @param type
+	 * @param uid
+	 * @return
+	 */
 	public static Result getProduction(String type, String uid) {
 		ObjectNode result = Json.newObject();
 		if ("Goods".equals(type)) {
@@ -95,6 +113,12 @@ public class MyUser extends Controller {
 		return ok(result);
 	}
 
+	/**
+	 * get friends
+	 * 
+	 * @param uid
+	 * @return
+	 */
 	public static Result getFriends(String uid) {
 		List<Friendship> friendships = Friendship.find.where()
 				.ilike("aid", uid).findList();
@@ -122,6 +146,11 @@ public class MyUser extends Controller {
 		return ok(result);
 	}
 
+	/**
+	 * send present to friend
+	 * 
+	 * @return
+	 */
 	public static Result sendPresent() {
 		JsonNode jn = request().body().asJson();
 		System.out.println(jn);
