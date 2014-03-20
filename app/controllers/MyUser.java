@@ -3,8 +3,10 @@ package controllers;
 import java.util.Iterator;
 import java.util.List;
 
+import models.Friendship;
 import models.Production;
 import models.Users;
+import models.WishItem;
 import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -62,14 +64,61 @@ public class MyUser extends Controller {
 	}
 
 	public static Result getProduction(String type, String uid) {
+		ObjectNode result = Json.newObject();
 		if ("Goods".equals(type)) {
 			List<Production> productions = Production.find.where()
 					.ilike("uid", uid).findList();
-			System.out.println(productions.size() + "---"
-					+ productions.get(0).title + productions.get(1).title);
-		} else if ("WishItem".equals(type)) {
 
+			for (Production tmp : productions) {
+				ObjectNode on = Json.newObject();
+				on.put("title", tmp.title);
+				on.put("description", tmp.description);
+				on.put("type", tmp.type);
+
+				result.put(tmp.pid, on);
+			}
+		} else if ("WishItem".equals(type)) {
+			List<WishItem> wishItems = WishItem.find.where().ilike("uid", uid)
+					.findList();
+
+			for (WishItem tmp : wishItems) {
+				ObjectNode on = Json.newObject();
+				on.put("title", tmp.title);
+				on.put("description", tmp.description);
+				on.put("type", tmp.type);
+
+				result.put(tmp.wid, on);
+			}
+		} else {
+			return badRequest(JsonUtil.getFalseJson());
 		}
-		return ok();
+		return ok(result);
+	}
+
+	public static Result getFriends(String uid) {
+		List<Friendship> friendships = Friendship.find.where()
+				.ilike("aid", uid).findList();
+
+		if (friendships.size() < 1) {
+			return badRequest(JsonUtil.getFalseJson());
+		}
+
+		ObjectNode result = Json.newObject();
+		for (Friendship tmp : friendships) {
+			Users user = Users.find.byId(tmp.bid);
+
+			if (user == null) {
+				continue;
+			}
+
+			ObjectNode on = Json.newObject();
+			on.put("birthday", user.birthday);
+			on.put("gender", user.gender);
+			on.put("current_location", user.location);
+			on.put("interesting", user.interesting);
+
+			result.put(user.uid, on);
+		}
+		return ok(result);
 	}
 }
