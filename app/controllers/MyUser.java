@@ -34,10 +34,7 @@ public class MyUser extends Controller {
 		on.put("gender", user.gender);
 		on.put("current_location", user.location);
 		on.put("interesting", user.interesting);
-
-		ObjectNode result = Json.newObject();
-		result.put(name, on);
-		return ok(result);
+		return ok(on);
 	}
 
 	/**
@@ -136,10 +133,11 @@ public class MyUser extends Controller {
 			}
 
 			ObjectNode on = Json.newObject();
+			on.put("nick", user.nick);
 			on.put("birthday", user.birthday);
 			on.put("gender", user.gender);
 			on.put("current_location", user.location);
-			on.put("interesting", user.interesting);
+			on.put("interest", user.interesting);
 
 			result.put(user.uid, on);
 		}

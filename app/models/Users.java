@@ -12,6 +12,7 @@ public class Users extends Model {
 
 	@Id
 	public String uid;
+	public String nick;
 	public String pwd;
 	public String location;
 	public String birthday;

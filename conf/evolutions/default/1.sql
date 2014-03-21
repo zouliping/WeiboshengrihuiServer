@@ -31,6 +31,7 @@ create table production (
 
 create table users (
   uid                       varchar(255) not null,
+  nick                      varchar(255),
   pwd                       varchar(255),
   location                  varchar(255),
   birthday                  varchar(255),
