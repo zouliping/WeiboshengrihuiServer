@@ -88,7 +88,7 @@ public class MyUser extends Controller {
 				ObjectNode on = Json.newObject();
 				on.put("title", tmp.title);
 				on.put("description", tmp.description);
-				on.put("type", tmp.type);
+				on.put("goods_type", tmp.type);
 
 				result.put(tmp.pid, on);
 			}
@@ -100,7 +100,7 @@ public class MyUser extends Controller {
 				ObjectNode on = Json.newObject();
 				on.put("title", tmp.title);
 				on.put("description", tmp.description);
-				on.put("type", tmp.type);
+				on.put("goods_type", tmp.type);
 
 				result.put(tmp.wid, on);
 			}
