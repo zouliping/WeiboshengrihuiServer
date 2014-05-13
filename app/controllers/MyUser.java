@@ -11,6 +11,7 @@ import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
 import utils.JsonUtil;
+import utils.SHA1;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
@@ -158,8 +159,9 @@ public class MyUser extends Controller {
 
 		Production production = Production.find.byId(pid);
 		if (production.uid.equals(from)) {
-			production.uid = to;
+			production.uid = SHA1.getSHA1String(to);
 			production.save();
+			System.out.println("send successfully");
 		} else {
 			return badRequest(JsonUtil.getFalseJson());
 		}
