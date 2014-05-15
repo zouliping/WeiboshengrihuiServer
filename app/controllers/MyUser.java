@@ -58,13 +58,13 @@ public class MyUser extends Controller {
 
 			if ("classname".equals(pro) || "uid".equals(pro)
 					|| "individualname".equals(pro)) {
-			} else if ("current_location".equals(pro)) {
+			} else if ("u_current_location".equals(pro)) {
 				users.location = json.get(pro).textValue();
-			} else if ("gender".equals(pro)) {
+			} else if ("u_gender".equals(pro)) {
 				users.gender = json.get(pro).booleanValue();
-			} else if ("birthday".equals(pro)) {
+			} else if ("u_birthday".equals(pro)) {
 				users.birthday = json.get(pro).textValue();
-			} else if ("interesting".equals(pro)) {
+			} else if ("u_interest".equals(pro)) {
 				users.interesting = json.get(pro).textValue();
 			}
 		}
@@ -158,6 +158,11 @@ public class MyUser extends Controller {
 		String pid = jn.get("pid").textValue();
 
 		Production production = Production.find.byId(pid);
+
+		if (production == null) {
+			return ok(JsonUtil.getFalseJson());
+		}
+
 		if (production.uid.equals(from)) {
 			production.uid = SHA1.getSHA1String(to);
 			production.save();
