@@ -31,10 +31,10 @@ public class MyUser extends Controller {
 		}
 
 		ObjectNode on = Json.newObject();
-		on.put("birthday", user.birthday);
-		on.put("gender", user.gender);
-		on.put("current_location", user.location);
-		on.put("interesting", user.interesting);
+		on.put("-u_birthday", user.birthday);
+		on.put("-u_gender", user.gender);
+		on.put("-u_current_location", user.location);
+		on.put("-u_interest", user.interesting);
 		return ok(on);
 	}
 
@@ -87,9 +87,9 @@ public class MyUser extends Controller {
 
 			for (Production tmp : productions) {
 				ObjectNode on = Json.newObject();
-				on.put("title", tmp.title);
-				on.put("description", tmp.description);
-				on.put("goods_type", tmp.type);
+				on.put("-g_title", tmp.title);
+				on.put("-g_description", tmp.description);
+				on.put("-g_goods_type", tmp.type);
 
 				result.put(tmp.pid, on);
 			}
@@ -99,9 +99,9 @@ public class MyUser extends Controller {
 
 			for (WishItem tmp : wishItems) {
 				ObjectNode on = Json.newObject();
-				on.put("title", tmp.title);
-				on.put("description", tmp.description);
-				on.put("goods_type", tmp.type);
+				on.put("-w_title", tmp.title);
+				on.put("-w_description", tmp.description);
+				on.put("-w_goods_type", tmp.type);
 
 				result.put(tmp.wid, on);
 			}
@@ -134,11 +134,11 @@ public class MyUser extends Controller {
 			}
 
 			ObjectNode on = Json.newObject();
-			on.put("nick", user.nick);
-			on.put("birthday", user.birthday);
-			on.put("gender", user.gender);
-			on.put("current_location", user.location);
-			on.put("interest", user.interesting);
+			on.put("-u_nick", user.nick);
+			on.put("-u_birthday", user.birthday);
+			on.put("-u_gender", user.gender);
+			on.put("-u_current_location", user.location);
+			on.put("-u_interest", user.interesting);
 
 			result.put(user.uid, on);
 		}
