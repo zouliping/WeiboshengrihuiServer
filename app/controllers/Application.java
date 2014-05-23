@@ -27,7 +27,7 @@ public class Application extends Controller {
 		String uid = json.findPath("id").textValue();
 		String pwd = json.findPath("password").textValue();
 
-		Users user = Users.find.byId(uid);
+		Users user = Users.find.byId(SHA1.getSHA1String(uid));
 
 		if (user == null) {
 			return badRequest(JsonUtil.getFalseJson());
