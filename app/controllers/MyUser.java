@@ -79,11 +79,13 @@ public class MyUser extends Controller {
 	 * @param uid
 	 * @return
 	 */
-	public static Result getProduction(String type, String uid) {
+	public static Result getProduction(String type, String uid, Integer page,
+			Integer num) {
 		ObjectNode result = Json.newObject();
 		if ("Goods".equals(type)) {
 			List<Production> productions = Production.find.where()
-					.ilike("uid", uid).findList();
+					.ilike("uid", uid).findPagingList(num).getPage(page)
+					.getList();
 
 			for (Production tmp : productions) {
 				ObjectNode on = Json.newObject();
@@ -95,7 +97,7 @@ public class MyUser extends Controller {
 			}
 		} else if ("WishItem".equals(type)) {
 			List<WishItem> wishItems = WishItem.find.where().ilike("uid", uid)
-					.findList();
+					.findPagingList(num).getPage(page).getList();
 
 			for (WishItem tmp : wishItems) {
 				ObjectNode on = Json.newObject();
@@ -117,9 +119,9 @@ public class MyUser extends Controller {
 	 * @param uid
 	 * @return
 	 */
-	public static Result getFriends(String uid) {
+	public static Result getFriends(String uid, Integer page, Integer num) {
 		List<Friendship> friendships = Friendship.find.where()
-				.ilike("aid", uid).findList();
+				.ilike("aid", uid).findPagingList(num).getPage(page).getList();
 
 		if (friendships.size() < 1) {
 			return badRequest(JsonUtil.getFalseJson());
