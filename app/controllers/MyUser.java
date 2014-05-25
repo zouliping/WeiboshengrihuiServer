@@ -108,8 +108,10 @@ public class MyUser extends Controller {
 				result.put(tmp.wid, on);
 			}
 		} else {
-			return badRequest(JsonUtil.getFalseJson());
+			return ok(JsonUtil.getFalseJson());
 		}
+
+		System.out.println(result);
 		return ok(result);
 	}
 
@@ -122,10 +124,6 @@ public class MyUser extends Controller {
 	public static Result getFriends(String uid, Integer page, Integer num) {
 		List<Friendship> friendships = Friendship.find.where()
 				.ilike("aid", uid).findPagingList(num).getPage(page).getList();
-
-		if (friendships.size() < 1) {
-			return badRequest(JsonUtil.getFalseJson());
-		}
 
 		ObjectNode result = Json.newObject();
 		for (Friendship tmp : friendships) {
@@ -144,6 +142,8 @@ public class MyUser extends Controller {
 
 			result.put(user.uid, on);
 		}
+
+		System.out.println(result);
 		return ok(result);
 	}
 
