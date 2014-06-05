@@ -184,8 +184,8 @@ public class MyUser extends Controller {
 	public static Result removeFriend() {
 		JsonNode jn = request().body().asJson();
 		System.out.println(jn);
-		String aid = jn.get("indivi1").textValue();
-		String bid = jn.get("indivi2").textValue();
+		String aid = jn.get("indiv1").textValue();
+		String bid = jn.get("indiv2").textValue();
 
 		Friendship friendship = Friendship.find.where().ilike("aid", aid)
 				.ilike("bid", bid).findUnique();
